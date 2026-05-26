@@ -1,37 +1,33 @@
-name: CI
+name: Deploy Astro to GitHub Pages
 
 on:
   push:
-    branches: [main]
-  pull_request:
+    branches: [ main ] # 当你把代码推送到 main 分支时，自动触发这个脚本
 
 jobs:
-  build-and-check:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061
-        with:
-          version: 9
-
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: pnpm
+          node-version: 20
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Astro typecheck
-        run: pnpm astro-check
+      - name: Build Astro Project
+        run: npm run build
 
-      - name: Biome check (lint + formatting) on src
-        run: pnpm biome:check
-
-      - name: Biome formatting check on src (no write)
-        run: pnpm biome:format -- ./src --write=false
+      - name: Deploy to Target Repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }} # 调用你埋好的钥匙
+          repository-name: WTOTTER/WTOTTER.github.io # 🔴 轰炸目标：直接覆盖掉原本的 Hexo 仓库
+          branch: main # 轰进主仓库的 main 分支
+          folder: dist # 把 Astro 编译出来的网页扔过去
+          clean: true # 清理掉旧文件
