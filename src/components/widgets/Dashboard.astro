@@ -1,0 +1,76 @@
+---
+import Card from "../temple/Card.astro";
+import { getCollection } from "astro:content";
+
+const startDate = new Date("2026-05-28");
+const now = new Date();
+
+const diff = now.getTime() - startDate.getTime();
+
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+const hours = Math.floor(
+  (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+);
+
+const posts = await getCollection("blog");
+
+const categories = new Set();
+const tags = new Set();
+
+for (const post of posts) {
+  if (post.data.categories) {
+    for (const category of post.data.categories) {
+      categories.add(category);
+    }
+  }
+
+  if (post.data.tags) {
+    for (const tag of post.data.tags) {
+      tags.add(tag);
+    }
+  }
+}
+---
+
+<Card>
+  <div class="p-4">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-lg">📊</span>
+      <span class="font-bold">网站状态</span>
+    </div>
+
+    <div class="space-y-3 text-sm">
+      <div class="flex justify-between items-center">
+        <span>⏱️ 运行时间</span>
+        <span class="font-semibold text-primary">
+          {days}天 {hours}小时
+        </span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>📝 文章</span>
+        <span>{posts.length}</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>📂 分类</span>
+        <span>{categories.size}</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>🏷️ 标签</span>
+        <span>{tags.size}</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>🟢 状态</span>
+        <span class="text-success">在线</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>⚙️ 版本</span>
+        <span>v1.0</span>
+      </div>
+    </div>
+  </div>
+</Card>
