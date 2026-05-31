@@ -3,11 +3,11 @@ site:
   tab: WTOTTER的未来空间 # 浏览器标签栏上显示的文本
   title: 💠 WTOTTER's Blog # 网站的标题
   description: 欢迎来到我的未来科技感个人博客！🚀 # 网站的描述
-  language: zh-cn # 改成中文
+  language: zh # 改成中文
   favicon: /favicon.ico # 网站的图标
   theme: # 浅色和深色模式主题
     light: winter 
-    dark: dracula 
+    dark: business 
     code: github-dark 
   date_format: YYYY-MM-DD # 日期格式
   blog: 
@@ -34,16 +34,16 @@ site:
 user:
   name: WTOTTER 
   site: "https://wtotter.github.io" 
-  avatar: /profile.png 
+  avatar: /profile.jpg 
   sidebar: # 侧边栏配置
     social:
-      - href: "https://github.com/你的GitHub账号" 
+      - href: "https://github.com/WTOTTER" 
         ariaLabel: Github
         title: Github
         svg: "ri:github-line"
   footer: # 页脚配置
     social:
-      - href: "https://github.com/你的GitHub账号"
+      - href: "https://github.com/WTOTTER"
         ariaLabel: Github
         title: Github
         svg: "ri:github-line"

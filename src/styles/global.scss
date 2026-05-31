@@ -669,3 +669,107 @@ code {
     @apply block text-center py-8 text-base-content opacity-50;
   }
 }
+
+/* =================================================================
+   💚 终极暴力版：初音绿样式完全体注入 (WTOTTER 专属)
+   ================================================================= */
+
+/* 1. 强行把所有可能的 DaisyUI 颜色变量通通染绿 */
+:root, [data-theme], [data-theme-type="dark"], [data-theme-type="light"], html, body {
+  --p: 170 80% 55% !important;   /* 强行重写 Primary */
+  --primary: #39C5BB !important;
+  --secondary: #00FFCC !important;
+  --primary-content: #000000 !important; /* 确保绿底之上的文字是绝对清晰的黑色 */
+}
+
+/* 2. 精准打击：强行剥夺按钮的原本肤色 */
+.btn-primary,
+.btn,
+.blog-container .btn,
+a[href="/blog"].btn,
+a[href*="localhost:4000"].btn,
+main a.btn {
+  background: #39C5BB !important; /* 强行背景绿 */
+  background-color: #39C5BB !important;
+  border-color: #39C5BB !important;
+  color: #0b0f14 !important; /* 极客深黑字，绝对不能是白色或灰色 */
+  font-weight: 800 !important;
+  
+  /* 赛博朋克微发光 */
+  box-shadow: 0 0 15px rgba(57, 197, 187, 0.6) !important;
+  text-shadow: none !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 3. 悬停互动（Hover）疯狂加强 */
+.btn-primary:hover,
+.btn:hover,
+a[href="/blog"].btn:hover,
+a[href*="localhost:4000"].btn:hover {
+  background: #00FFCC !important; /* 悬停时变成更亮的电光绿 */
+  background-color: #00FFCC !important;
+  border-color: #00FFCC !important;
+  color: #000000 !important;
+  
+  /* 触发霓虹灯瞬间亮起的爆裂发光效果 */
+  box-shadow: 0 0 25px #39C5BB, 0 0 50px rgba(0, 255, 204, 0.6) !important;
+  transform: translateY(-3px) scale(1.03) !important;
+}
+
+/* 4. 左侧大标题变成初音渐变色 */
+.frosti-heading {
+  background: linear-gradient(135deg, #39C5BB 0%, #00FFCC 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* =================================================================
+   🎮 修正版 Steam 风格方形框
+   ================================================================= */
+.steam-avatar-frame {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
+  padding: 4px;
+  background: linear-gradient(135deg, #39C5BB, #00FFCC);
+  border-radius: 6px;
+  /* 呼吸动画：3秒循环，缓入缓出 */
+  animation: breathe-glow 3s infinite ease-in-out;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 呼吸动画定义 */
+@keyframes breathe-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(57, 197, 187, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(57, 197, 187, 0.9); } /* 中间亮度高，像呼吸一样 */
+}
+
+/* 鼠标悬停时的加强效果 */
+.steam-avatar-frame:hover {
+  animation: none; /* 悬停时暂停呼吸，变亮 */
+  box-shadow: 0 0 30px #39C5BB, 0 0 60px rgba(0, 255, 204, 0.6);
+  transform: scale(1.02);
+}
+
+.steam-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.bilibili-glow {
+  animation: breathe-glow 3s infinite ease-in-out;
+  color: #39C5BB; /* B站青色 */
+}
+.bilibili-glow:hover {
+  animation: none;
+  transform: scale(1.1);
+  background-color: rgba(57, 197, 187, 0.2);
+}
