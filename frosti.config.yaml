@@ -26,7 +26,7 @@ site:
     # 🔴 核心修改点：直接绑定 Hexo 本地预览的绝对超链接！
     - id: butterfly
       text: WTOTTER的后院
-      href: "http://localhost:4000/" # ⬅️ 以后你运行 hexo s 时的本地网址，直接带你跳过去！
+      href: "https://wtotter.github.io/" 
       svg: "material-symbols:local-florist-outline-rounded"
       target: _blank # ⬅️ 变成在新标签页打开，不影响你当前看 Astro
 

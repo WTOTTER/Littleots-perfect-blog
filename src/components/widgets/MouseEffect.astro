@@ -1,0 +1,69 @@
+<canvas id="mouse-canvas"></canvas>
+
+<script is:inline>
+(() => {
+  const canvas = document.getElementById("mouse-canvas");
+
+  if (!(canvas instanceof HTMLCanvasElement)) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("mousemove", (e) => {
+    particles.push({
+      x: e.clientX,
+      y: e.clientY,
+      vx: (Math.random() - 0.5) * 1,
+      vy: (Math.random() - 0.5) * 1,
+      size: Math.random() * 3 + 2,
+      alpha: 1,
+    });
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      p.alpha -= 0.015;
+      p.size *= 0.98;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+      ctx.fillStyle = `rgba(15,71,98,${p.alpha})`;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = "#00ffff";
+
+      ctx.fill();
+    });
+
+    particles = particles.filter((p) => p.alpha > 0);
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+</script>
+
+<style>
+#mouse-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999999;
+}
+</style>

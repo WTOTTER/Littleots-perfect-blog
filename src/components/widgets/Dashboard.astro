@@ -1,7 +1,7 @@
 ---
 import Card from "../temple/Card.astro";
 import { getCollection } from "astro:content";
-
+import RuntimeCounter from "./RuntimeCounter.astro";
 const startDate = new Date("2026-05-28");
 const now = new Date();
 
@@ -43,9 +43,10 @@ for (const post of posts) {
       <div class="flex justify-between items-center">
         <span>⏱️ 运行时间</span>
         <span class="font-semibold text-primary">
-          {days}天 {hours}小时
+          <RuntimeCounter />
         </span>
       </div>
+
 
       <div class="flex justify-between items-center">
         <span>📝 文章</span>
@@ -63,13 +64,23 @@ for (const post of posts) {
       </div>
 
       <div class="flex justify-between items-center">
-        <span>🟢 状态</span>
-        <span class="text-success">在线</span>
+        <span>🚀 部署平台</span>
+        <span class="text-primary">Cloudflare</span>
       </div>
 
       <div class="flex justify-between items-center">
-        <span>⚙️ 版本</span>
-        <span>v1.0</span>
+        <span>💻 框架</span>
+        <span>Astro</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>📅 建站时间</span>
+        <span>2026-05-28</span>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span>⚙️ 当前版本</span>
+        <span>v1.0.0</span>
       </div>
     </div>
   </div>

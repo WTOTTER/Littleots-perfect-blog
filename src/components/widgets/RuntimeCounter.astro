@@ -1,0 +1,31 @@
+<span id="runtime">加载中...</span>
+
+<script is:inline>
+  const startDate = new Date("2026-05-28");
+
+  function updateRuntime() {
+    const now = new Date();
+    const diff = now.getTime() - startDate.getTime();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (diff % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    const seconds = Math.floor(
+      (diff % (1000 * 60)) / 1000
+    );
+
+    const el = document.getElementById("runtime");
+
+    if (el) {
+      el.textContent =
+        `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+    }
+  }
+
+  updateRuntime();
+  setInterval(updateRuntime, 1000);
+</script>
