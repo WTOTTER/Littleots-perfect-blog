@@ -23,17 +23,21 @@ site:
       href: /blog
       svg: "material-symbols:book-2-outline-rounded"
       target: _self
-    # 🔴 核心修改点：直接绑定 Hexo 本地预览的绝对超链接！
-    - id: butterfly
-      text: WTOTTER的后院
-      href: "https://wtotter.github.io/" 
-      svg: "material-symbols:local-florist-outline-rounded"
-      target: _blank # ⬅️ 变成在新标签页打开，不影响你当前看 Astro
+    - id: about
+      text: 关于
+      href: /about
+      svg: "material-symbols:person-outline-rounded"
+      target: _self
+    - id: project
+      text: 项目
+      href: /project
+      svg: "material-symbols:folder-open-outline-rounded"
+      target: _self
 
 # 用户的个人信息
 user:
   name: WTOTTER 
-  site: "https://wtotter.github.io" 
+  site: "https://littleots-perfect-blog.pages.dev" 
   avatar: /profile.jpg 
   sidebar: # 侧边栏配置
     social:
